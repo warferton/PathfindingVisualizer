@@ -1,0 +1,27 @@
+.node {
+  width: 25px;
+  height: 25px;
+  outline: 0.5px rgb(163, 163, 163) solid;
+  transition: all 0.3s;
+}
+
+.node:hover {
+  background-color: hsla(27, 100%, 50%, 0.753);
+  transform: scale(1.1);
+}
+
+.wallNode {
+  background-color: hsla(0, 0%, 16%, 0.753);
+}
+
+.visitedNode {
+  background-color: hsla(51, 100%, 50%, 0.753);
+}
+
+.goalNode {
+  background-color: hsla(12, 100%, 50%, 0.89);
+}
+
+.starNode {
+  background-color: hsla(177, 100%, 47%, 0.753);
+}
