@@ -7,7 +7,7 @@ Welcome to Pathfinding Visualizer! This is a small app I built after having a sp
 List of algrotihms to be implemented in this application( ✔️ - implemented | ⚠️ - in process | ✖️ - not implemented)
 
 
-№|Algorithm| Type | Implemented|
+№|Algorithm| Type | Implementation|
 -|-------------|--------|--|
 1|Dijkstra's | Weighted ⚓|⚠️|
 2| A-star | Weighted ⚓|✖️|
