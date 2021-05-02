@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 # PathfindingVisualizer
 
 Welcome to Pathfinding Visualizer! This is a small app I built after having a spike of facination and curiosity towards pathfinding algorithms, caused by prticipating in a codebattle event. I wanted to visualize the different one's I've researched as well as try to engineer one myself. 
