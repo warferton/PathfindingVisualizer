@@ -4,7 +4,7 @@ Welcome to Pathfinding Visualizer! This is a small app I built after having a sp
 
 ## Behold the Algorithms
 
-List of algrotihms to be implemented in this application( ✔️ - implemented | ⏲️ - in process | ✖️ - not implemented)
+List of algrotihms to be implemented in this application( ✔️ - implemented | ⚠️ - in process | ✖️ - not implemented)
 
 
 №|Algorithm| Type | Implemented|
