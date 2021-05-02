@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from '../../styles/Node.module.css';
 
 const Node = (props) =>{
@@ -14,20 +14,19 @@ const Node = (props) =>{
         wall
     } = props
 
-    // function setVisited(visited) {
-    //     this.visited = visited;
-    // }
+    useEffect( () => {
 
-   if(role == 'START') setStyle(styles.startNode);
-
-   if(role == 'GOAL') setStyle(styles.goalNode); 
-
-   if(visited) setStyle(styles.visitedNode);
-
-   if(wall) setStyle(styles.wallNode);
+        if(role == 'START') setStyle(styles.startNode);
+        
+        else if(role == 'GOAL') setStyle(styles.goalNode); 
+        
+        else if(visited) setStyle(styles.visitedNode);
+        
+        else if(wall) setStyle(styles.wallNode);
+    }, [])
    
     return(
-        <div className={style}>
+        <div className={style.node + " " + style}>
         </div>
     )
 

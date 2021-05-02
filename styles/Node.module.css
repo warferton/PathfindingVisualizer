@@ -1,6 +1,7 @@
 .node {
-  width: 25px;
-  height: 25px;
+  display: flex;
+  width: 20px;
+  height: 20px;
   outline: 0.5px rgb(163, 163, 163) solid;
   transition: all 0.3s;
 }
@@ -12,6 +13,7 @@
 
 .wallNode {
   background-color: hsla(0, 0%, 16%, 0.753);
+  outline: 0.5px rgb(61, 61, 61) solid;
 }
 
 .visitedNode {
@@ -22,6 +24,6 @@
   background-color: hsla(12, 100%, 50%, 0.89);
 }
 
-.starNode {
+.startNode {
   background-color: hsla(177, 100%, 47%, 0.753);
 }
