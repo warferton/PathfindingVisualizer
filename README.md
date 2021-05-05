@@ -4,17 +4,17 @@ Welcome to Pathfinding Visualizer! This is a small app I built after having a sp
 
 ## Behold the Algorithms
 
-List of algrotihms to be implemented in this application( ✔️ - implemented | ⚠️ - in process | ✖️ - not implemented)
+List of algrotihms to be implemented in this application( ✅ - implemented | ⚠️ - in process | ❌ - not implemented)
 
 
 №|Algorithm| Type | Implementation|
 -|-------------|--------|--|
-1|Dijkstra's | Weighted ⚓|✔️|
-2| A-star | Weighted ⚓|✔️|
+1|Dijkstra's | Weighted ⚓|✅|
+2| A-star | Weighted ⚓|✅|
 3| BFS | Not Weighted 🏃|⚠️|
 4|DFS|  Not Weighted 🏃|⚠️|
-5| B-star | Weighted ⚓|✖️|
-6| aß | Weighted ⚓|✖️|
+5| B-star | Weighted ⚓|❌|
+6| aß | Weighted ⚓|❌|
 7| **Catapult** / **Trebuchet** Search| Weighted ⚓| ✖️ |
 
 
