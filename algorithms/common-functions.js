@@ -10,16 +10,16 @@ export const getNeighbours = (node, grid) => {
     const neighbours = [];
 
     const {x, y} = node;
-
+    
     if (x > 0) neighbours.push(grid[y][x - 1]);
-
-    if (y > 0 ) neighbours.push(grid[y - 1][x]);
-
+    
     if (y < grid.length - 1) neighbours.push(grid[y + 1][x]);
+    
+    if (y > 0 ) neighbours.push(grid[y - 1][x]);
 
     if (x < grid[0].length - 1) neighbours.push(grid[y][x + 1]);
 
-    return neighbours.filter(neighbour => !neighbour.visited);
+    return neighbours.filter(neighbour => !neighbour.visited && !neighbour.wall);
 
 }
 

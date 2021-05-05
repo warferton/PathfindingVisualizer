@@ -37,7 +37,7 @@ export const Astar = (grid, start, goal) => {
 
         // iterate over neighbours
         for( const neighbour of neighbours ){
-            if(neighbour.wall || closedSet.includes(neighbour)) continue;
+            if(closedSet.includes(neighbour)) continue;
 
             const temp_g = current_node.g + 1;
             console.log("tempG: " + temp_g);

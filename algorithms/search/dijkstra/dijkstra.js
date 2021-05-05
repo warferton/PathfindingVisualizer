@@ -21,9 +21,6 @@ export const Dijkstra = function(grid, start, goal){
 
         const node = unvisited.shift();
 
-        //skip if encounter a wall
-        if(node.wall) continue;
-
         // we are trapped
         if(node.distance === Infinity) return visited;
         

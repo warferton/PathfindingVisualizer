@@ -3,14 +3,16 @@ import { createRef } from 'react';
 import { Dijkstra } from '../../algorithms/search/dijkstra/dijkstra';
 import { Astar } from '../../algorithms/search/A-star/astar'
 import { BFS } from '../../algorithms/search/bfs/bfs'
+import { DFS } from '../../algorithms/search/dfs/dfs'
+import { consecutiveDFS } from '../../algorithms/search/dfs/consecutiveDfs'
 import { animate, createNode } from '../../algorithms/common-functions';
 import Node from '../node/node.component';
 import styles from '../../styles/Grid.module.css';
 
 
-const START = { y:15 , x: 5 }
+const START = {y:29 , x: 49 }
 
-const GOAL = { y:25 , x: 40 }
+const GOAL = {  y:0 , x: 20 }
 
 const Grid = (props) => {
 
@@ -55,7 +57,7 @@ const Grid = (props) => {
     const runAlgorithm = () => {
         const start_node = grid[START.y][START.x];
         const end_node = grid[GOAL.y][GOAL.x];
-        return animate(BFS(grid, start_node, end_node));
+        return animate(Astar(grid, start_node, end_node));
     }
 
     //============================================================================

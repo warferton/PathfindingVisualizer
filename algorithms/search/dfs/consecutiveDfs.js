@@ -1,6 +1,6 @@
 import { getNeighbours } from '../../common-functions';
 
-export const DFS = (grid, start, goal) => {
+export const consecutiveDFS = (grid, start, goal) => {
     const visited = [];
 
     let found_flag = false;
@@ -20,6 +20,7 @@ export const DFS = (grid, start, goal) => {
     for(const neighbour of neighbours) {
         neighbour.parent = node;
         recursive(neighbour);
+        break;
     }
 
     })(start);
