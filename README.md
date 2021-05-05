@@ -13,8 +13,8 @@ List of algrotihms to be implemented in this application( ✅ - implemented | �
 | 3   | BFS                                 | Not Weighted 🏃 | ✅             |
 | 4   | DFS                                 | Not Weighted 🏃 | ✅             |
 | 5   | Consecutive DFS                     | Not Weighted 🏃 | ✅             |
-| 6   | B-star                              | Weighted ⚓     | ❌             |
-| 7   | aß (Alpha-Beta)                     | Weighted ⚓     | ❌             |
+| 6   | B-star                              | Weighted ⚓     | ⚠️             |
+| 7   | aß (Alpha-Beta)                     | Weighted ⚓     | ⚠️             |
 | 8   | **Catapult** / **Trebuchet** Search | Weighted ⚓     | ❌             |
 
 ## A Brief Explanation of the Algorithms Used
