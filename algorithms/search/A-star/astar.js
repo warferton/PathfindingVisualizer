@@ -23,6 +23,7 @@ export const Astar = (grid, start, goal) => {
 
         const current_node = openSet.shift();
         visited.push(current_node);
+        current_node.visited = true;
 
         if(current_node === goal){
             console.log("FOUND !!");

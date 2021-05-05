@@ -32,9 +32,8 @@ export const Dijkstra = function(grid, start, goal){
         visited.push(node);
         
         //goal found
-        if(node === goal) {
-            return visited;
-        }
+        if(node === goal) return visited;
+    
         //update distances
         updateNeighbours(node, grid);
         

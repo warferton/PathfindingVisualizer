@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { createRef } from 'react';
 import { Dijkstra } from '../../algorithms/search/dijkstra/dijkstra';
 import { Astar } from '../../algorithms/search/A-star/astar'
+import { BFS } from '../../algorithms/search/bfs/bfs'
 import { animate, createNode } from '../../algorithms/common-functions';
 import Node from '../node/node.component';
 import styles from '../../styles/Grid.module.css';
@@ -54,7 +55,7 @@ const Grid = (props) => {
     const runAlgorithm = () => {
         const start_node = grid[START.y][START.x];
         const end_node = grid[GOAL.y][GOAL.x];
-        return animate(Astar(grid, start_node, end_node));
+        return animate(BFS(grid, start_node, end_node));
     }
 
     //============================================================================
