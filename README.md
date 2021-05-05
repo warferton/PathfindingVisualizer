@@ -11,10 +11,11 @@ List of algrotihms to be implemented in this application( ✅ - implemented | �
 | 1   | Dijkstra's                          | Weighted ⚓     | ✅             |
 | 2   | A-star                              | Weighted ⚓     | ✅             |
 | 3   | BFS                                 | Not Weighted 🏃 | ✅             |
-| 4   | DFS                                 | Not Weighted 🏃 | ⚠️             |
-| 5   | B-star                              | Weighted ⚓     | ❌             |
-| 6   | aß (Alpha-Beta)                     | Weighted ⚓     | ❌             |
-| 7   | **Catapult** / **Trebuchet** Search | Weighted ⚓     | ❌             |
+| 4   | DFS                                 | Not Weighted 🏃 | ✅             |
+| 5   | Consecutive DFS                     | Not Weighted 🏃 | ✅             |
+| 6   | B-star                              | Weighted ⚓     | ❌             |
+| 7   | aß (Alpha-Beta)                     | Weighted ⚓     | ❌             |
+| 8   | **Catapult** / **Trebuchet** Search | Weighted ⚓     | ❌             |
 
 ## A Brief Explanation of the Algorithms Used
 
