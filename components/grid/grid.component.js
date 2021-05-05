@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import { createRef } from 'react';
-import { dijkstra } from '../../algorithms/search/dijkstra/dijkstra';
+import { Dijkstra } from '../../algorithms/search/dijkstra/dijkstra';
+import { Astar } from '../../algorithms/search/A-star/astar'
 import { animate, createNode } from '../../algorithms/common-functions';
 import Node from '../node/node.component';
 import styles from '../../styles/Grid.module.css';
 
 
-const START = { y:5 , x: 5}
+const START = { y:15 , x: 5 }
 
 const GOAL = { y:25 , x: 40 }
 
@@ -53,7 +54,7 @@ const Grid = (props) => {
     const runAlgorithm = () => {
         const start_node = grid[START.y][START.x];
         const end_node = grid[GOAL.y][GOAL.x];
-        return animate(dijkstra(grid, start_node, end_node));
+        return animate(Astar(grid, start_node, end_node));
     }
 
     //============================================================================
@@ -111,7 +112,7 @@ const Grid = (props) => {
             }
         }
         else if (placeItem === 'weight') { 
-            const new_weight = temp_node.weight === 1 ? 5 : 1 
+            const new_weight = temp_node.weight === 1 ? 15 : 1 
             new_node = {
                 ...temp_node,
                 weight: new_weight
@@ -131,7 +132,7 @@ const Grid = (props) => {
         >
             { display_grid }
         </div>
-            <button onClick={() => runAlgorithm()}> LAUNCH </button>
+            <button onClick={() => runAlgorithm()} style={{margin:"10rem"}}> LAUNCH </button>
         </>
     )
 

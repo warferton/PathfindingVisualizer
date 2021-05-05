@@ -4,7 +4,7 @@ import NodeStyles from '../styles/Node.module.css'
  *  Gets all the node's neighbours on the grid
  * @param {Object} node 
  * @param {Object[]} grid 
- * @returns neighbours - Object[]
+ * @returns neighbours[]
  */
 export const getNeighbours = (node, grid) => {
     const neighbours = [];
@@ -38,9 +38,20 @@ export const updateNeighbours = (node, grid) => {
 }
 
 /**
+ * Updates heuristics of a given node
+ * @param {*} node 
+ * @param {*} goal 
+ */
+export const updateHeuristic = (node, goal) => {
+    // Manhattan distance
+    const raw_distance = Math.abs(node.x - goal.x) + Math.abs(node.y - goal.y);
+    node.heuristic = raw_distance + node.weight;
+}
+
+/**
  * Deconstructs a 2D array into a 1D array
  * @param {Object[][]} structure_2d 
- * @returns 1-dimensional array list
+ * @returns list[] - 1-dimensional array list
  */
 export const deconstruct2d = (structure_2d) => {
     const result = [];
@@ -60,12 +71,15 @@ export const prioritiseDistances = ( heap ) => {
     heap.sort( (a,b) => a.distance - b.distance);
 }
 
+export const prioritiseHeuristics = ( heap ) => {
+    heap.sort( (a,b) => a.heuristic - b.heuristic);
+}
 
 /**
  * Constructs a Path between the start and goal nodes,
  * taking the goal node as parameter
  * @param {Object} end_node 
- * @returns list containing a path to the goal node
+ * @returns path[]
  */
 export const buildPath = (end_node) => {
     const path = [];
@@ -96,6 +110,7 @@ export const animate = (node_list) => {
             setTimeout( () => {
                 for(let i = 0; i < path.length; i++){
                     setTimeout( () => {
+                        if(path[i].role === '')
                         path[i].ref.current.className += ` ${ NodeStyles.pathNode }`
                     }, 10 * i)
                 }
@@ -124,7 +139,8 @@ export const createNode = (x, y, ref, START, GOAL) => {
     const node_role = 
             y === START.y && x === START.x? "START" 
             : 
-            y === GOAL.y && x === GOAL.x ? "GOAL" : '';
+            y === GOAL.y && x === GOAL.x ? "GOAL" 
+            : '';
 
     const node_is_wall = false;
 
@@ -136,6 +152,9 @@ export const createNode = (x, y, ref, START, GOAL) => {
             x: x,
             y: y,
             distance: Infinity,
+            heuristic: null,
+            f: null,
+            g: null,
             weight: 1,
             parent: null,
             visited: false

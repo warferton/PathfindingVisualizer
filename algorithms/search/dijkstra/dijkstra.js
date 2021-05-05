@@ -1,6 +1,14 @@
 import { updateNeighbours, deconstruct2d, prioritiseDistances } from '../../common-functions'
 
-export const dijkstra = function(grid, start, goal){
+/**
+ * Traverses the grid using Dijkstra algorithm
+ * and returns a list of all the visited nodes
+ * @param {Object[][]} grid 
+ * @param {Object} start 
+ * @param {Objec} goal 
+ * @returns visited[]
+ */
+export const Dijkstra = function(grid, start, goal){
 
     const visited = [];
     start.distance = 0;
@@ -13,11 +21,11 @@ export const dijkstra = function(grid, start, goal){
 
         const node = unvisited.shift();
 
-        // we are trapped
-        if(node.distance === Infinity) return visited;
-        
         //skip if encounter a wall
         if(node.wall) continue;
+
+        // we are trapped
+        if(node.distance === Infinity) return visited;
         
         //mark as visited and add to visited list
         node.visited = true;
