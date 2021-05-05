@@ -1,23 +1,41 @@
 .node {
-  display: flex;
-  width: 20px;
-  height: 20px;
+  display: inline-block;
+  padding: 0;
+  width: 25px;
+  height: 25px;
   outline: 0.5px rgb(163, 163, 163) solid;
   transition: all 0.3s;
 }
 
 .node:hover {
-  background-color: hsla(27, 100%, 50%, 0.753);
-  transform: scale(1.1);
+  outline-color: hsla(27, 100%, 50%, 0.753);
+  transform: scale(1.2);
+  box-shadow: 0px 0px 5px hsla(27, 100%, 50%, 0.753);
 }
 
 .wallNode {
   background-color: hsla(0, 0%, 16%, 0.753);
   outline: 0.5px rgb(61, 61, 61) solid;
+  animation-name: wall;
+  animation-duration: 0.2s;
+  animation-timing-function: ease-in-out;
+  animation-delay: 0;
+}
+
+.weightNode {
+  outline: 0.5px rgb(61, 61, 61) solid;
+  animation-name: wall;
+  animation-duration: 0.2s;
+  animation-timing-function: linear;
+  animation-delay: 0;
 }
 
 .visitedNode {
   background-color: hsla(51, 100%, 50%, 0.753);
+  animation-name: visit;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+  animation-delay: 0;
 }
 
 .goalNode {
@@ -25,5 +43,68 @@
 }
 
 .startNode {
-  background-color: hsla(177, 100%, 47%, 0.753);
+  background-color: hsla(160, 100%, 47%, 0.753);
+}
+
+.pathNode {
+  background-color: hsla(165, 100%, 34%, 0.753);
+  animation-name: path;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+  animation-delay: 0.2s;
+}
+
+.weightIcon {
+  margin: auto;
+  display: block;
+}
+
+@keyframes visit {
+  0% {
+    background-color: rgba(255, 145, 0, 0.589);
+    transform: scale(0.1);
+    opacity: 0;
+  }
+
+  50% {
+    background-color: rgb(255, 115, 0);
+    transform: scale(1.3);
+  }
+
+  100% {
+    background-color: hsla(51, 100%, 50%, 0.753);
+    transform: scale(1);
+    /* transform: rotateX(180deg); */
+    opacity: 1;
+  }
+}
+
+@keyframes path {
+  0% {
+    transform: scale(0.3);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes wall {
+  0% {
+    transform: scale(0.1);
+    opacity: 0;
+  }
+
+  50% {
+    transform: scale(1.6);
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }

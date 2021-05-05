@@ -1,0 +1,147 @@
+import NodeStyles from '../styles/Node.module.css'
+
+/**
+ *  Gets all the node's neighbours on the grid
+ * @param {Object} node 
+ * @param {Object[]} grid 
+ * @returns neighbours - Object[]
+ */
+export const getNeighbours = (node, grid) => {
+    const neighbours = [];
+
+    const {x, y} = node;
+
+    if (x > 0) neighbours.push(grid[y][x - 1]);
+
+    if (y > 0 ) neighbours.push(grid[y - 1][x]);
+
+    if (y < grid.length - 1) neighbours.push(grid[y + 1][x]);
+
+    if (x < grid[0].length - 1) neighbours.push(grid[y][x + 1]);
+
+    return neighbours.filter(neighbour => !neighbour.visited);
+
+}
+
+/**
+ * Visits all the node's neighbours on the grid and
+ * updated their distance property
+ * @param {Object} node 
+ * @param {Object[]} grid 
+ */
+export const updateNeighbours = (node, grid) => {
+    const neighbours = getNeighbours(node, grid);
+    for(const n of neighbours) {
+        n.distance = node.distance + n.weight;
+        n.parent = node;
+    }
+}
+
+/**
+ * Deconstructs a 2D array into a 1D array
+ * @param {Object[][]} structure_2d 
+ * @returns 1-dimensional array list
+ */
+export const deconstruct2d = (structure_2d) => {
+    const result = [];
+    for(const bucket of structure_2d) {
+        for(const item of bucket) {
+            result.push(item);
+        }
+    }
+    return result;
+}
+
+/**
+ * Sorts the structure based on distance property of its items
+ * @param {Object[]} heap 
+ */
+export const prioritiseDistances = ( heap ) => {
+    heap.sort( (a,b) => a.distance - b.distance);
+}
+
+
+/**
+ * Constructs a Path between the start and goal nodes,
+ * taking the goal node as parameter
+ * @param {Object} end_node 
+ * @returns list containing a path to the goal node
+ */
+export const buildPath = (end_node) => {
+    const path = [];
+    let cur_node = end_node;
+
+    while(!!cur_node) {
+        path.unshift(cur_node);
+        cur_node = cur_node.parent;
+    }
+
+    return path;
+}
+
+/**
+ * Animates Search and Path construction
+ * @param {Object[]} node_list
+ */
+export const animate = (node_list) => {
+    const len =  node_list.length;
+
+    //animate
+    for(let i = 0; i <= len; i++) {
+
+        // if finished iterating and animating search ->
+        // animate path
+        if(i === len){
+            const path = buildPath(node_list[i-1]);
+            setTimeout( () => {
+                for(let i = 0; i < path.length; i++){
+                    setTimeout( () => {
+                        path[i].ref.current.className += ` ${ NodeStyles.pathNode }`
+                    }, 10 * i)
+                }
+            }, 8 * i)
+                return;
+        }
+
+        //animate search
+        setTimeout(() => {
+            node_list[i].ref.current.className += ` ${ NodeStyles.visitedNode }`
+        }, 8 * i);
+    }
+}
+
+
+/**
+ * Takes in grid coordinates and a ref value, and creates a node
+ * @param {number} x
+ * @param {number} y
+ * @param {import('react').RefObject} ref
+ * @param {Object} START 
+ * @param {Object} GOAL
+ * @return node
+ */
+export const createNode = (x, y, ref, START, GOAL) => {
+    const node_role = 
+            y === START.y && x === START.x? "START" 
+            : 
+            y === GOAL.y && x === GOAL.x ? "GOAL" : '';
+
+    const node_is_wall = false;
+
+    const node = {
+            ref: ref,
+            key: `${ x }-${ y }` ,
+            role:  node_role,
+            wall: node_is_wall,
+            x: x,
+            y: y,
+            distance: Infinity,
+            weight: 1,
+            parent: null,
+            visited: false
+        } 
+
+    return  node;
+        
+    
+}

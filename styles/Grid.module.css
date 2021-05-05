@@ -5,7 +5,6 @@
   display: grid;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 0.2rem;
   border: 3.5px solid #e09b4c;
   grid-template-columns: repeat(50, minmax(5px, 1fr));
   max-width: max-content;

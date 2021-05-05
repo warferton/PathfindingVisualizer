@@ -1,6 +1,39 @@
+import { useRef } from 'react';
 import styles from '../../styles/Nav.module.css'
 
-const Nav = () => {
+const Nav = (props) => {
+
+const { setPlaceItem } = props;
+
+const wall_ref = useRef();
+
+const weight_ref = useRef();
+
+const handleItemOptionClick = (item_name) => {
+    if(item_name === 'wall'){
+        if(wall_ref.current.className.includes(styles.selected)){
+            wall_ref.current.className =  styles.navButton + " " + styles.button;
+            item_name = '';
+        }
+        else{
+            weight_ref.current.className = styles.navButton + " " + styles.button;
+            wall_ref.current.className +=  ` ${styles.selected}`;
+        }
+    }
+    if(item_name === 'weight'){
+         if(weight_ref.current.className.includes(styles.selected)){
+            weight_ref.current.className =  styles.navButton + " " + styles.button;
+            item_name = '';
+        }
+        else{
+            wall_ref.current.className = styles.navButton + " " + styles.button;
+            weight_ref.current.className += ` ${styles.selected}`;
+        }
+    }
+    setPlaceItem(item_name);
+    console.log("Changed to : " + item_name);
+}
+
 
 return (
     <nav className={ styles.nav }>
@@ -16,8 +49,8 @@ return (
                         <path 
                         d="M102 42.0485L65.6842 59.5243M102 42.0485L65.6842 22.0243M102 42.0485H79.8947H57.7895M29.3684 2L57.7895 42.0485M29.3684 2V42.0485M29.3684 2L15.6842 22.0243M29.3684 2L65.6842 22.0243M29.3684 77L57.7895 42.0485M29.3684 77V42.0485M29.3684 77L15.6842 59.5243M29.3684 77L65.6842 59.5243M57.7895 42.0485H29.3684M57.7895 42.0485L15.6842 59.5243M57.7895 42.0485L15.6842 22.0243M29.3684 42.0485H2M29.3684 42.0485L15.6842 22.0243M29.3684 42.0485L15.6842 59.5243M29.3684 42.0485L65.6842 59.5243M29.3684 42.0485L65.6842 22.0243M2 42.0485L15.6842 22.0243M2 42.0485L15.6842 59.5243M65.6842 59.5243V22.0243" 
                         stroke="#FFA600" 
-                        stroke-width="4" 
-                        stroke-linejoin="bevel"/>
+                        strokeWidth="4" 
+                        strokeLinejoin="bevel"/>
                     </svg>
 
                     
@@ -36,14 +69,14 @@ return (
                         <ellipse cx="60.448" cy="6.58228" rx="6.40701" ry="6.58228" fill="#FFA600"/>
                         <ellipse cx="56.0664" cy="73.4177" rx="6.40701" ry="6.58228" fill="#FFA600"/>
                         <ellipse cx="45.8423" cy="49.1139" rx="6.40701" ry="6.58228" fill="#FFA600"/>
-                        <path d="M56.0664 74.4304L46.5728 50.1266L73.5932 30.3798" stroke="#FFA600" stroke-width="3"/>
-                        <path d="M6.40698 41.0127L56.0662 74.4304L73.593 30.3797L35.6183 23.5443L8.59783 10.6329" stroke="#FFA600" stroke-width="3"/>
-                        <path d="M60.448 7.59494L7.86768 10.6329" stroke="#FFA600" stroke-width="3"/>
-                        <path d="M6.40698 41.0127L7.86755 10.6329" stroke="#FFA600" stroke-width="3"/>
-                        <path d="M6.40698 41.0127L73.593 30.3798" stroke="#FFA600" stroke-width="3"/>
-                        <path d="M60.448 7.59494L73.5931 30.3798" stroke="#FFA600" stroke-width="3"/>
-                        <path d="M6.40698 41.0127L35.6183 22.7848" stroke="#FFA600" stroke-width="3"/>
-                        <path d="M6.40698 41.7722L15.1704 69.8734L56.0662 74.4304" stroke="#FFA600" stroke-width="3"/>
+                        <path d="M56.0664 74.4304L46.5728 50.1266L73.5932 30.3798" stroke="#FFA600" strokeWidth="3"/>
+                        <path d="M6.40698 41.0127L56.0662 74.4304L73.593 30.3797L35.6183 23.5443L8.59783 10.6329" stroke="#FFA600" strokeWidth="3"/>
+                        <path d="M60.448 7.59494L7.86768 10.6329" stroke="#FFA600" strokeWidth="3"/>
+                        <path d="M6.40698 41.0127L7.86755 10.6329" stroke="#FFA600" strokeWidth="3"/>
+                        <path d="M6.40698 41.0127L73.593 30.3798" stroke="#FFA600" strokeWidth="3"/>
+                        <path d="M60.448 7.59494L73.5931 30.3798" stroke="#FFA600" strokeWidth="3"/>
+                        <path d="M6.40698 41.0127L35.6183 22.7848" stroke="#FFA600" strokeWidth="3"/>
+                        <path d="M6.40698 41.7722L15.1704 69.8734L56.0662 74.4304" stroke="#FFA600" strokeWidth="3"/>
                     </svg>
 
                     <span className={ styles.navItemText } > Algorithms </span>
@@ -53,17 +86,17 @@ return (
             <li className={ styles.navItem }>
                 <button className= { styles.navButton + " " + styles.button }>
                     <svg width="75" height="75" viewBox="0 0 85 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2 77V2H77V77H2Z" stroke="#FFA600" stroke-width="4" stroke-linejoin="bevel"/>
-                        <path d="M12.6343 2.54346V15.5869M26.0672 13.9565V27H14.3134V36.7826H26.0672H37.8209V47.6522H26.0672V64.5H14.3134V54.7174H2" stroke="#FFA600" stroke-width="4" stroke-linejoin="bevel"/>
-                        <path d="M14.3135 56.3478V45.4783" stroke="#FFA600" stroke-width="4" stroke-linejoin="bevel"/>
-                        <path d="M35.0225 16.1304H52.3732V28.087H64.1269V41.6739V48.7391H52.3732V36.7826" stroke="#FFA600" stroke-width="4" stroke-linejoin="bevel"/>
-                        <path d="M58.25 49.8216V66.135" stroke="#FFA600" stroke-width="4" stroke-linejoin="bevel"/>
-                        <path d="M28.3059 57.9783H46.2164V64.5" stroke="#FFA600" stroke-width="4" stroke-linejoin="bevel"/>
-                        <path d="M57.9702 63.9566H68.0448V57.4348" stroke="#FFA600" stroke-width="4" stroke-linejoin="bevel"/>
-                        <path d="M62.4478 16.1304H75.3209" stroke="#FFA600" stroke-width="4" stroke-linejoin="bevel"/>
-                        <path d="M43.418 2.54346V15.0435" stroke="#FFA600" stroke-width="4" stroke-linejoin="bevel"/>
-                        <path d="M37.2612 17.7609V26.4565" stroke="#FFA600" stroke-width="4" stroke-linejoin="bevel"/>
-                        <path d="M36.7014 60.1522V69.3913" stroke="#FFA600" stroke-width="4" stroke-linejoin="bevel"/>
+                        <path d="M2 77V2H77V77H2Z" stroke="#FFA600" strokeWidth="4" strokeLinejoin="bevel"/>
+                        <path d="M12.6343 2.54346V15.5869M26.0672 13.9565V27H14.3134V36.7826H26.0672H37.8209V47.6522H26.0672V64.5H14.3134V54.7174H2" stroke="#FFA600" strokeWidth="4" strokeLinejoin="bevel"/>
+                        <path d="M14.3135 56.3478V45.4783" stroke="#FFA600" strokeWidth="4" strokeLinejoin="bevel"/>
+                        <path d="M35.0225 16.1304H52.3732V28.087H64.1269V41.6739V48.7391H52.3732V36.7826" stroke="#FFA600" strokeWidth="4" strokeLinejoin="bevel"/>
+                        <path d="M58.25 49.8216V66.135" stroke="#FFA600" strokeWidth="4" strokeLinejoin="bevel"/>
+                        <path d="M28.3059 57.9783H46.2164V64.5" stroke="#FFA600" strokeWidth="4" strokeLinejoin="bevel"/>
+                        <path d="M57.9702 63.9566H68.0448V57.4348" stroke="#FFA600" strokeWidth="4" strokeLinejoin="bevel"/>
+                        <path d="M62.4478 16.1304H75.3209" stroke="#FFA600" strokeWidth="4" strokeLinejoin="bevel"/>
+                        <path d="M43.418 2.54346V15.0435" stroke="#FFA600" strokeWidth="4" strokeLinejoin="bevel"/>
+                        <path d="M37.2612 17.7609V26.4565" stroke="#FFA600" strokeWidth="4" strokeLinejoin="bevel"/>
+                        <path d="M36.7014 60.1522V69.3913" stroke="#FFA600" strokeWidth="4" strokeLinejoin="bevel"/>
                     </svg>
 
                     <span className={ styles.navItemText }> Mazes </span>
@@ -71,7 +104,11 @@ return (
             </li>
 
             <li className={ styles.navItem }>
-                <button className= { styles.navButton + " " + styles.button }>
+                <button 
+                className= { styles.navButton + " " + styles.button }
+                onClick = { () => handleItemOptionClick('wall') }
+                ref={ wall_ref }
+                >
 
                     <svg 
                     width="75" 
@@ -82,17 +119,23 @@ return (
                         <path 
                         d="M2 36.811V25.6919M2 36.811V46.8583M2 36.811H14.8731M39.5 2V13.0465M39.5 2H66.9254M39.5 2H11.5149M39.5 13.0465H53.2127M39.5 13.0465H26.6269M66.9254 13.0465V2M66.9254 13.0465H77M66.9254 13.0465H53.2127M66.9254 2H77V13.0465M77 13.0465V25.6919M77 25.6919H61.8881M77 25.6919V36.811M53.2127 13.0465V25.6919M53.2127 25.6919H61.8881M53.2127 25.6919H39.9198M26.6269 25.6919V13.0465M26.6269 25.6919H17.6716H14.8731M26.6269 25.6919H39.9198M26.6269 13.0465H14.8731M2 13.0465V2H11.5149M2 13.0465H11.5149M2 13.0465H14.8731M2 13.0465V25.6919M11.5149 13.0465V2M11.5149 13.0465H14.8731M2 25.6919H14.8731M77 46.7674H65.1063M77 46.7674V36.811M77 46.7674V56.9055M65.1063 46.7674V36.811M65.1063 46.7674H53.2127M65.1063 36.811H77M65.1063 36.811H61.8881M39.9198 36.811H20.4701M39.9198 36.811V25.6919M39.9198 36.811H43.5578M43.5578 46.7674V36.811M43.5578 46.7674H26.6269M43.5578 46.7674H53.2127M20.4701 46.7674V36.811M20.4701 46.7674H26.6269M20.4701 46.7674L2 46.8583M20.4701 36.811H14.8731M61.8881 25.6919V36.811M61.8881 36.811H43.5578M2 56.9055V46.8583M2 56.9055V66.9528M2 56.9055H14.8731M26.6269 56.9055V46.7674M26.6269 56.9055H14.8731M26.6269 56.9055H39.5M53.2127 46.7674V56.9055M53.2127 56.9055H39.5M53.2127 56.9055H61.8881M77 56.9055H61.8881M77 56.9055V66.9528M2 66.9528V77H27.1866M2 66.9528H14.8731M14.8731 66.9528V56.9055M14.8731 66.9528H27.1866M14.8731 56.9055H39.5M39.5 56.9055V66.9528M39.5 66.9528H50.694M39.5 66.9528H27.1866M61.8881 66.9528V56.9055M61.8881 66.9528H77M61.8881 66.9528H50.694M77 66.9528V77H50.694M50.694 66.9528V77M50.694 77H27.1866M27.1866 66.9528V77M14.8731 25.6919V36.811" 
                         stroke="#FFA600" 
-                        stroke-width="3" 
-                        stroke-linejoin="bevel"/>
+                        strokeWidth="3" 
+                        strokeLinejoin="bevel"/>
                     </svg>
 
 
-                    <span className={ styles.navItemText }> Walls </span>
+                    <span 
+                    className={ styles.navItemText }
+                    > Walls </span>
                 </button>
             </li>
 
             <li className={ styles.navItem}>
-                <button className= { styles.navButton + " " + styles.button }>
+                <button 
+                className= { styles.navButton + " " + styles.button }
+                onClick = { () => handleItemOptionClick('weight') }
+                ref={ weight_ref }
+                >
 
                     <svg width="75" height="75" viewBox="0 0 75 75" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <mask
@@ -119,7 +162,7 @@ return (
                     data-prefix="fas" 
                     data-icon="question-circle" 
                     class-name="svg-inline--fa fa-question-circle fa-w-16" 
-                    role="img" x
+                    role="img"
                     mlns="http://www.w3.org/2000/svg" 
                     width="75" 
                     height="75" 
@@ -135,9 +178,9 @@ return (
             <li className={ styles.navItem }>
                 <a href="https://warferton.github.io/" className={ styles.button + " " + styles.logo }>
                     <svg width="150" height="75" viewBox="0 0 269 260" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M155.466 4.06445L264 246L27.6364 4.06445" stroke="white" stroke-width="10"/>
-                        <path d="M150.364 4.06445L14 246L150.364 166.021" stroke="white" stroke-width="10"/>
-                        <path d="M153.33 3.5L153 3.6906L152.67 3.5L153.33 3.5Z" fill="white" stroke="white" stroke-width="4"/>
+                        <path d="M155.466 4.06445L264 246L27.6364 4.06445" stroke="white" strokeWidth="10"/>
+                        <path d="M150.364 4.06445L14 246L150.364 166.021" stroke="white" strokeWidth="10"/>
+                        <path d="M153.33 3.5L153 3.6906L152.67 3.5L153.33 3.5Z" fill="white" stroke="white" strokeWidth="4"/>
                     </svg>
                 </a>
             </li>
