@@ -15,7 +15,7 @@ List of algrotihms to be implemented in this application( ✅ - implemented | �
 4|DFS|  Not Weighted 🏃|⚠️|
 5| B-star | Weighted ⚓|❌|
 6| aß | Weighted ⚓|❌|
-7| **Catapult** / **Trebuchet** Search| Weighted ⚓| ✖️ |
+7| **Catapult** / **Trebuchet** Search| Weighted ⚓|❌|
 
 
 ## A Brief Explanation of the Algorithms Used
