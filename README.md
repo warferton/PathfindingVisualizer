@@ -13,7 +13,7 @@ List of algrotihms to be implemented in this application( ✅ - implemented | �
 | 3   | BFS                                 | Not Weighted 🏃 | ✅             |
 | 4   | DFS                                 | Not Weighted 🏃 | ✅             |
 | 5   | Consecutive DFS                     | Not Weighted 🏃 | ✅             |
-| 6   | D-Star                              | Weighted ⚓     | ⚠️             |
+| 6   | D-Star Lite                         | Weighted ⚓     | ⚠️             |
 | 7   | IDA-Star                     | Weighted ⚓     | ⚠️             |
 | 8   | **Catapult** / **Trebuchet** Search | Weighted ⚓     | ❌             |
 
