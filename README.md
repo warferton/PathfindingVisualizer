@@ -14,7 +14,7 @@ List of algrotihms to be implemented in this application( ✅ - implemented | �
 | 4   | DFS                                 | Not Weighted 🏃 | ✅             |
 | 5   | Consecutive DFS                     | Not Weighted 🏃 | ✅             |
 | 6   | D-Star Lite                         | Weighted ⚓     | ⚠️             |
-| 7   | IDA-Star                     | Weighted ⚓     | ⚠️             |
+| 7   | IDA-Star                     | Weighted ⚓     |  ✅            |
 | 8   | **Catapult** / **Trebuchet** Search | Weighted ⚓     | ❌             |
 
 ## A Brief Explanation of the Algorithms Used
