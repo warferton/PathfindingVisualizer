@@ -58,7 +58,7 @@ const Grid = (props) => {
     const runAlgorithm = () => {
         const start_node = grid[START.y][START.x];
         const end_node = grid[GOAL.y][GOAL.x];
-        return animate(consecutiveDFS(grid, start_node, end_node));
+        return animate(IDA(grid, start_node, end_node));
     }
 
     //============================================================================

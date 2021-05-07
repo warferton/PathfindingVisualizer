@@ -22,14 +22,14 @@ export const Dijkstra = function(grid, start, goal){
         const node = unvisited.shift();
 
         // we are trapped
-        if(node.distance === Infinity) return [visited];
+        if(node.distance === Infinity) return visited;
         
         //mark as visited and add to visited list
         node.visited = true;
         visited.push(node);
         
         //goal found
-        if(node === goal) return [visited];
+        if(node === goal) return visited;
     
         //update distances
         updateNeighbours(node, grid);

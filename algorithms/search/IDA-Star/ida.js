@@ -23,11 +23,11 @@ export const IDA = (grid, start, goal) => {
         const temp = search(path, 0, threshold, grid, goal);
         if(temp === 'GOAL') {
             console.log("FOUND");
-            return [visited, path];
+            return visited;
         }
         if(temp === Infinity) {
             console.log("NONFOUND");
-            return [visited, path];
+            return visited;
         }
         threshold = temp;
     }

@@ -24,5 +24,5 @@ export const DFS = (grid, start, goal) => {
 
     })(start);
 
-    return [visited];
+    return visited;
 }
