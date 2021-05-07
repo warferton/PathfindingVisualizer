@@ -1,9 +1,15 @@
 import { useRef } from 'react';
+import { Dijkstra } from '../../algorithms/search/dijkstra/dijkstra';
+import { Astar } from '../../algorithms/search/A-star/astar'
+import { BFS } from '../../algorithms/search/bfs/bfs'
+import { DFS } from '../../algorithms/search/dfs/dfs'
+import { consecutiveDFS } from '../../algorithms/search/dfs/consecutiveDfs'
+import { IDA } from '../../algorithms/search/IDA-Star/ida'
 import styles from '../../styles/Nav.module.css'
 
 const Nav = (props) => {
 
-const { setPlaceItem } = props;
+const { setPlaceItem, setPathAlgorithm, runRef } = props;
 
 const wall_ref = useRef();
 
@@ -39,7 +45,10 @@ return (
     <nav className={ styles.nav }>
         <ul className={ styles.navList }>
             <li className={ styles.navItem}>
-                <button className={ styles.navButton + " " + styles.button }>
+                <button 
+                className={ styles.navButton + " " + styles.button }
+                onClick={ () => runRef.current.click()}
+                >
                     <svg 
                     width="100" 
                     height="75" 
@@ -81,6 +90,66 @@ return (
 
                     <span className={ styles.navItemText } > Algorithms </span>
                 </button>
+                
+                <ul className={ styles.navList + " " + styles.optionList }>
+                    <li>
+                        <button 
+                        className= { styles.button }
+                        onClick={ () => setPathAlgorithm( { algorithm: Dijkstra} )}>
+                            <p>Dijkstra</p>
+                        </button>
+                    </li>
+                    <li>
+                        <button 
+                        className= { styles.button }
+                        onClick={ () => setPathAlgorithm( { algorithm: Astar } )}>
+                            <p>A-Star</p>
+                        </button>
+                    </li>
+                    <li>
+                        <button 
+                        className= { styles.button }
+                        onClick={ () => setPathAlgorithm( { algorithm: IDA } )}>
+                            <p>IDA-Star</p>
+                        </button>
+                    </li>
+                    <li>
+                        <button 
+                        className= { styles.button }
+                        onClick={ () => setPathAlgorithm( { algorithm: BFS } )}>
+                            <p>BFS</p>
+                        </button>
+                    </li>
+                    <li>
+                        <button 
+                        className= { styles.button }
+                        onClick={ () => setPathAlgorithm( { algorithm: DFS } )}>
+                            <p>DFS</p>
+                        </button>
+                    </li>
+                    <li>
+                        <button 
+                        className= { styles.button }
+                        onClick={ () => setPathAlgorithm( { algorithm: consecutiveDFS } )}>
+                            <p>Consecutive DFS</p>
+                        </button>
+                    </li>
+                    <li>
+                        <button 
+                        className= { styles.button }
+                        onClick={ () => alert("Sorry, this algorithm has not yet been implemented")}>
+                            <p>D-Star Lite</p>
+                        </button>
+                    </li>
+                    <li>
+                        <button 
+                        className= { styles.button }
+                        onClick={ () => alert("Sorry, this algorithm has not yet been implemented")}>
+                            <p>Catapult</p>
+                        </button>
+                    </li>
+                </ul>
+
             </li>
              
             <li className={ styles.navItem }>
@@ -101,6 +170,38 @@ return (
 
                     <span className={ styles.navItemText }> Mazes </span>
                 </button>
+
+                <ul className={ styles.navList + " " + styles.optionList }>
+                    <li>
+                        <button 
+                        className= { styles.button }
+                        onClick={ () => console.log("Maze")}>
+                            <p>Random Maze</p>
+                        </button>
+                    </li>
+                    <li>
+                        <button 
+                        className= { styles.button }
+                        onClick={ () => console.log("Maze")}>
+                            <p>Recursive Division</p>
+                        </button>
+                    </li>
+                    <li>
+                        <button 
+                        className= { styles.button }
+                        onClick={ () => console.log("Maze")}>
+                            <p>Horizontal Lines</p>
+                        </button>
+                    </li>
+                    <li>
+                        <button 
+                        className= { styles.button }
+                        onClick={ () => console.log("Maze")}>
+                            <p>Vertical Lines</p>
+                        </button>
+                    </li>
+                </ul>
+
             </li>
 
             <li className={ styles.navItem }>

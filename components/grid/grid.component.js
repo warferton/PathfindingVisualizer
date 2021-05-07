@@ -1,11 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, forwardRef } from 'react';
 import { createRef } from 'react';
-import { Dijkstra } from '../../algorithms/search/dijkstra/dijkstra';
-import { Astar } from '../../algorithms/search/A-star/astar'
-import { BFS } from '../../algorithms/search/bfs/bfs'
-import { DFS } from '../../algorithms/search/dfs/dfs'
-import { consecutiveDFS } from '../../algorithms/search/dfs/consecutiveDfs'
-import { IDA } from '../../algorithms/search/IDA-Star/ida'
 import { animate, createNode } from '../../algorithms/common-functions';
 import Node from '../node/node.component';
 import styles from '../../styles/Grid.module.css';
@@ -15,10 +9,10 @@ const START = {y:20 , x: 35 }
 
 const GOAL = {  y:10 , x: 10 }
 
-const Grid = (props) => {
+const Grid = forwardRef((props, ref) => {
 
-    const { placeItem } = props;
-    
+    const { placeItem, pathAlgorithm } = props; 
+
     const [grid, setGrid] = useState([]);
     
     useEffect( () => {
@@ -56,9 +50,11 @@ const Grid = (props) => {
     }
 
     const runAlgorithm = () => {
+        if(!!!pathAlgorithm) return;
+        const algorithm = pathAlgorithm.algorithm;
         const start_node = grid[START.y][START.x];
         const end_node = grid[GOAL.y][GOAL.x];
-        return animate(IDA(grid, start_node, end_node));
+        return animate(pathAlgorithm.algorithm(grid, start_node, end_node));
     }
 
     //============================================================================
@@ -130,16 +126,16 @@ const Grid = (props) => {
 
     return(
         <>
-        <div 
-        className={styles.grid}
-        onMouseUp = { onMouseUp }
-        >
-            { display_grid }
-        </div>
-            <button onClick={() => runAlgorithm()} style={{margin:"10rem"}}> LAUNCH </button>
+            <button ref={ ref } onClick={() => runAlgorithm()} style={{display: "none"}}/>
+            <div 
+            className={styles.grid}
+            onMouseUp = { onMouseUp }
+            >
+                { display_grid }
+            </div>
         </>
     )
 
-}
+});
 
 export default Grid;

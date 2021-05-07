@@ -71,6 +71,40 @@
   margin-top: 0;
 }
 
+.optionList {
+  padding: 0.5rem;
+  background-color: rgb(56, 56, 56);
+  border: 1.3px solid #ffa600;
+  height: max-content;
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(90%, 20%);
+  animation-name: optionList;
+  animation-duration: 0.4s;
+  animation-timing-function: linear;
+  animation-delay: 0s;
+}
+
+.optionList button {
+  cursor: pointer;
+}
+
+.optionList p {
+  font-size: 18px;
+  font-weight: 300;
+  color: #ffa600;
+}
+
+.navButton:hover {
+  cursor: pointer;
+}
+
+.navItem:hover > .optionList {
+  display: block;
+}
+
 .logo {
   justify-content: center;
 }
@@ -96,6 +130,20 @@
   }
   100% {
     transform: scale(1);
+  }
+}
+
+@keyframes optionList {
+  0% {
+    opacity: 0;
+    clip-path: polygon(1%);
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    clip-path: polygon(100%);
   }
 }
 

@@ -4,7 +4,8 @@ import { getNeighbours, updateHeuristic } from '../../common-functions'
 const visited = [];
 
 /**
- * 
+ * Traverses the grid using IDA* algorithm
+ * and returns a list of all the visited nodes
  * @param {Object[][]} grid 
  * @param {Object} start 
  * @param {Object} goal 
@@ -35,7 +36,7 @@ export const IDA = (grid, start, goal) => {
 }
 
 /**
- * 
+ * Executes dfs searches on the neighbouring nodes of the passed node
  * @param {Object[]} path 
  * @param {number} g 
  * @param {number} threshold 
