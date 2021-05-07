@@ -25,5 +25,5 @@ export const consecutiveDFS = (grid, start, goal) => {
 
     })(start);
 
-    return visited;
+    return [visited];
 }

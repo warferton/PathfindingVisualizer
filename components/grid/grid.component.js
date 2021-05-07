@@ -11,9 +11,9 @@ import Node from '../node/node.component';
 import styles from '../../styles/Grid.module.css';
 
 
-const START = {y:29 , x: 49 }
+const START = {y:20 , x: 35 }
 
-const GOAL = {  y:0 , x: 20 }
+const GOAL = {  y:10 , x: 10 }
 
 const Grid = (props) => {
 
@@ -58,7 +58,7 @@ const Grid = (props) => {
     const runAlgorithm = () => {
         const start_node = grid[START.y][START.x];
         const end_node = grid[GOAL.y][GOAL.x];
-        return animate(IDA(grid, start_node, end_node));
+        return animate(consecutiveDFS(grid, start_node, end_node));
     }
 
     //============================================================================

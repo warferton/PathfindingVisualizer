@@ -18,7 +18,7 @@ export const BFS = (grid, start, goal) => {
 
         console.log(node);
 
-        if(node === goal) return visited;
+        if(node === goal) return [visited];
 
         const neighbours = getNeighbours(node, grid);
 
@@ -30,6 +30,6 @@ export const BFS = (grid, start, goal) => {
     }
 
     //No path found
-    return visited;
+    return [visited];
 
 }

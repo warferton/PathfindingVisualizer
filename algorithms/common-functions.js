@@ -97,7 +97,13 @@ export const buildPath = (end_node) => {
  * Animates Search and Path construction
  * @param {Object[]} node_list
  */
-export const animate = (node_list) => {
+export const animate = (argument_list) => {
+    let flag = false;
+    let node_list = [];
+    if(argument_list.length === 2) flag = true;
+        
+    node_list = argument_list[0];
+    
     const len =  node_list.length;
 
     //animate
@@ -106,22 +112,28 @@ export const animate = (node_list) => {
         // if finished iterating and animating search ->
         // animate path
         if(i === len){
-            const path = buildPath(node_list[i-1]);
+            let path = [];
+            if(flag){
+                path = argument_list[1];
+            }
+            else
+                path = buildPath(node_list[i-1]);
+
             setTimeout( () => {
                 for(let i = 0; i < path.length; i++){
                     setTimeout( () => {
                         if(path[i].role === '')
                         path[i].ref.current.className += ` ${ NodeStyles.pathNode }`
-                    }, 10 * i)
+                    }, 8 * i)
                 }
-            }, 8 * i)
+            }, 12 * i)
                 return;
         }
 
         //animate search
         setTimeout(() => {
             node_list[i].ref.current.className += ` ${ NodeStyles.visitedNode }`
-        }, 8 * i);
+        }, 12 * i);
     }
 }
 

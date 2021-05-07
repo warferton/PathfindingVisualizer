@@ -1,62 +1,89 @@
 import { getNeighbours, updateHeuristic } from '../../common-functions'
 
-// only used for visualization purposes
+// only used for visualization purposes, not part of the algorithm
 const visited = [];
 
+/**
+ * 
+ * @param {Object[][]} grid 
+ * @param {Object} start 
+ * @param {Object} goal 
+ * @returns visited[]
+ */
 export const IDA = (grid, start, goal) => {
+
+    const path = [];
 
     updateHeuristic(start, goal);
     let threshold = start.heuristic;
 
-    while(1){
+    path.unshift(start);
 
-        const temp = search(start, 0 ,threshold, grid, goal);
-        if(temp === goal) {
-            console.log("FOUND IN MAIN");
-            return visited;
+    while (1) {
+        const temp = search(path, 0, threshold, grid, goal);
+        if(temp === 'GOAL') {
+            console.log("FOUND");
+            return [visited, path];
         }
-        if(temp.f === Infinity) {
-            console.log("NO PATH");
-            return visited;
+        if(temp === Infinity) {
+            console.log("NONFOUND");
+            return [visited, path];
         }
-        threshold = temp.f;
+        threshold = temp;
     }
 
 }
 
-const search = (node, g, threshold, grid, goal) => {
+/**
+ * 
+ * @param {Object[]} path 
+ * @param {number} g 
+ * @param {number} threshold 
+ * @param {Object[][]} grid 
+ * @param {Object} goal 
+ * @returns 
+ */
+const search = (path, g, threshold, grid, goal) => {
 
-    updateHeuristic(node, goal);
+    const node = path[0];
 
-    visited.push(node);
+    const f = g + node.heuristic;
 
-    node.f = g + node.heuristic;
+    if(f < threshold) return f;
 
-    if(node.f > threshold) return node;
+    if(node === goal) return 'GOAL';
 
-    if(node === goal){
-        console.log("FOUND IN SEARCH");
-        return node;
-    }
-
-    let min = { f: Infinity };
+    let min = Infinity;
 
     const neighbours = getNeighbours(node, grid);
 
+    console.log(neighbours);
+
+    neighbours.sort( (a, b) =>{
+        updateHeuristic(a, goal);
+        updateHeuristic(b, goal);
+        const val_a = a.heuristic + g;
+        const val_b = b.heuristic + g;
+        return val_a - val_b;
+    });
+
+
     for(const neighbour of neighbours){
-        neighbour.visited = true;
+
+        if(path.includes(neighbour)) continue;
+
+        path.unshift(neighbour);
+        visited.push(neighbour);
+
+        neighbour.g = g + neighbour.heuristic;
         neighbour.parent = node;
 
-        const new_g = g + neighbour.weight;
-        const temp = search(neighbour, new_g, threshold, grid, goal);
+        neighbour.f = search(path, neighbour.g, threshold, grid, goal);
 
-        if(temp === goal){
-            console.log("FOUND IN RECURSIVE");
-            return temp;
-        }
-
-        if(temp.f < min.f) min = temp;
+        if(neighbour.f === 'GOAL') return 'GOAL';
+        if(neighbour.f < min) min = neighbour.f;
+        path.unshift();
     }
     return min;
 
-};
+}

@@ -28,7 +28,7 @@ export const Astar = (grid, start, goal) => {
         if(current_node === goal){
             console.log("FOUND !!");
             console.log(visited);
-            return visited;
+            return [visited];
         }
 
         closedSet.push(current_node);
@@ -68,5 +68,5 @@ export const Astar = (grid, start, goal) => {
 
     }
     console.log('No PAth FOund ((');
-    return visited;
+    return [visited];
 }
