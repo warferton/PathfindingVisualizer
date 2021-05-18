@@ -23,7 +23,7 @@ const Node = forwardRef( (props, ref) => {
     
     else if(wall) style = styles.wallNode;
     
-    if(visited) style = styles.visitedNode;
+    else if(visited) style = styles.visitedNode;
 
     if(weight > 1){
         style = styles.weightNode;

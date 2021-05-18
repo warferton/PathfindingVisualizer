@@ -41,6 +41,13 @@
 .goalNode {
   background-color: hsla(12, 100%, 50%, 0.89);
 }
+.goalNode svg,
+.startNode svg {
+  animation-name: path;
+  animation-duration: 0.6s;
+  animation-timing-function: ease-out;
+  animation-delay: 0s;
+}
 
 .startNode {
   background-color: hsla(160, 100%, 47%, 0.753);
