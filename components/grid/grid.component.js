@@ -3,17 +3,20 @@ import { createRef } from 'react';
 import { animate, createNode } from '../../algorithms/common-functions';
 import Node from '../node/node.component';
 import styles from '../../styles/Grid.module.css';
+import NodeStyles from '../../styles/Node.module.css';
 
 
 const START = {y:20 , x: 35 }
 
 const GOAL = {  y:10 , x: 10 }
 
-const Grid = forwardRef((props, ref) => {
+export const Grid = forwardRef((props, ref) => {
 
     const { placeItem, pathAlgorithm } = props; 
 
     const [grid, setGrid] = useState([]);
+
+    let marked_nodes = [];
     
     useEffect( () => {
         const max_rows = props.limit / 10;
@@ -54,7 +57,40 @@ const Grid = forwardRef((props, ref) => {
         const algorithm = pathAlgorithm.algorithm;
         const start_node = grid[START.y][START.x];
         const end_node = grid[GOAL.y][GOAL.x];
-        return animate(pathAlgorithm.algorithm(grid, start_node, end_node));
+        marked_nodes =  animate(pathAlgorithm.algorithm(grid, start_node, end_node));
+    }
+
+    const constructMaze = (func) => {
+        const start_node = grid[START.y][START.x];
+        const end_node = grid[GOAL.y][GOAL.x];
+        setGrid(func(grid, 25));
+    }
+
+    const clear = () => {
+        for(const row of grid){
+            for(const node of row){
+                node.wall = false;
+                node.weight = 1;
+                node.parent = null;
+                node.visited = false;
+
+                if(node.role === ''){
+                    node.ref.current.className = NodeStyles.node;
+                    continue;
+                }
+
+                if(node.role === 'START'){
+                    node.ref.current.className = `${NodeStyles.node} ${NodeStyles.startNode}`;
+                    continue;
+                }
+
+                if(node.role === 'GOAL'){
+                node.ref.current.className = `${NodeStyles.node} ${NodeStyles.goalNode}`;
+                    continue;
+                }
+
+            }
+        }
     }
 
     //============================================================================
@@ -127,6 +163,8 @@ const Grid = forwardRef((props, ref) => {
     return(
         <>
             <button ref={ ref } onClick={() => runAlgorithm()} style={{display: "none"}}/>
+            <button onClick={() => constructMaze()} style={{margin: "10rem"}}>Maze</button>
+            <button onClick={() => clear()} style={{margin: "10rem"}}>Clear Grid</button>
             <div 
             className={styles.grid}
             onMouseUp = { onMouseUp }
@@ -137,5 +175,3 @@ const Grid = forwardRef((props, ref) => {
     )
 
 });
-
-export default Grid;

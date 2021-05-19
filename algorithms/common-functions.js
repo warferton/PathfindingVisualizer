@@ -115,7 +115,7 @@ export const animate = (node_list) => {
                     }, 10 * i)
                 }
             }, 8 * i)
-                return;
+                return node_list;
         }
 
         //animate search

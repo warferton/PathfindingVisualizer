@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
-import Grid from './grid/grid.component'
-import Nav from './nav/nav.component';
+import { Grid } from './grid/grid.component'
+import { Nav } from './nav/nav.component';
 
 const PathVisualiser = () => {
 

@@ -5,9 +5,11 @@ import { BFS } from '../../algorithms/search/bfs/bfs'
 import { DFS } from '../../algorithms/search/dfs/dfs'
 import { consecutiveDFS } from '../../algorithms/search/dfs/consecutiveDfs'
 import { IDA } from '../../algorithms/search/IDA-Star/ida'
+import { SimpleMaze } from '../../algorithms/mazes/simple-pattern/simple-random-maze';
+import { Grid } from '../grid/grid.component'
 import styles from '../../styles/Nav.module.css'
 
-const Nav = (props) => {
+export const Nav = (props) => {
 
 const { setPlaceItem, setPathAlgorithm, runRef } = props;
 
@@ -66,6 +68,7 @@ return (
                      <span className={ styles.navItemText } > Launch </span>
                 </button>
             </li>
+            
             <li className={ styles.navItem}>
                 <button className={ styles.navButton + " " + styles.button}>
 
@@ -175,7 +178,7 @@ return (
                     <li>
                         <button 
                         className= { styles.button }
-                        onClick={ () => console.log("Maze")}>
+                        onClick={ () => Grid.call(constructMaze(SimpleMaze), Grid, [])}>
                             <p>Random Maze</p>
                         </button>
                     </li>
@@ -276,6 +279,7 @@ return (
                     <span className={ styles.navItemText }> About </span>
                 </button>
             </li>
+            
             <li className={ styles.navItem }>
                 <a href="https://warferton.github.io/" className={ styles.button + " " + styles.logo }>
                     <svg width="150" height="75" viewBox="0 0 269 260" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -290,5 +294,3 @@ return (
 )
 
 }
-
-export default Nav;
