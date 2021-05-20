@@ -8,12 +8,34 @@ const PathVisualiser = () => {
 
     const [pathAlgorithm, setPathAlgorithm] = useState();
 
-    const runRef = useRef(null);
+    const [mazeAlgorithm, setMazeAlgorithm] = useState();
+
+    const [grid, setGrid] = useState([]);
+
+    const algoRunRef = useRef(null);
+
+    const mazeRunRef = useRef(null);
 
     return (
         <>
-            <Nav setPlaceItem={setPlaceItem} setPathAlgorithm={ setPathAlgorithm } runRef={ runRef }/>
-            <Grid limit ={300} placeItem={ placeItem } pathAlgorithm={ pathAlgorithm } ref={ runRef }/>
+            <Nav 
+            setPlaceItem={setPlaceItem} 
+            setPathAlgorithm={ setPathAlgorithm } 
+            setMazeAlgorithm={ setMazeAlgorithm } 
+            algoRef={ algoRunRef }
+            mazeRef={ mazeRunRef } 
+            />
+
+            <Grid 
+            limit ={300} 
+            placeItem={ placeItem } 
+            pathAlgorithm={ pathAlgorithm } 
+            mazeAlgorithm={ mazeAlgorithm } 
+            algoRef={ algoRunRef } 
+            mazeRef={ mazeRunRef } 
+            grid={ grid } 
+            setGrid={ setGrid }
+            />
         </>
     )
 

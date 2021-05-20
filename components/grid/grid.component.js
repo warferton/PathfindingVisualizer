@@ -6,15 +6,12 @@ import styles from '../../styles/Grid.module.css';
 import NodeStyles from '../../styles/Node.module.css';
 
 
-const START = {y:20 , x: 35 }
+const START = { y:20, x: 35 };
+const GOAL = { y:10, x: 10 };
 
-const GOAL = {  y:10 , x: 10 }
+export const Grid = (props) => {
 
-export const Grid = forwardRef((props, ref) => {
-
-    const { placeItem, pathAlgorithm } = props; 
-
-    const [grid, setGrid] = useState([]);
+    const { placeItem, pathAlgorithm, mazeAlgorithm, grid, setGrid, algoRef, mazeRef } = props; 
 
     let marked_nodes = [];
     
@@ -57,13 +54,18 @@ export const Grid = forwardRef((props, ref) => {
         const algorithm = pathAlgorithm.algorithm;
         const start_node = grid[START.y][START.x];
         const end_node = grid[GOAL.y][GOAL.x];
-        marked_nodes =  animate(pathAlgorithm.algorithm(grid, start_node, end_node));
+        marked_nodes = animate(pathAlgorithm.algorithm(grid, start_node, end_node));
     }
 
-    const constructMaze = (func) => {
-        const start_node = grid[START.y][START.x];
-        const end_node = grid[GOAL.y][GOAL.x];
-        setGrid(func(grid, 25));
+    const constructMaze = () => {
+        if(!!!mazeAlgorithm) return;
+        clear();
+        console.log("MAZE");
+        const { algorithm, percentile } = mazeAlgorithm;
+        if(percentile)
+            setGrid(algorithm(grid, 25));
+        else
+            setGrid(algorithm(grid, 25));
     }
 
     const clear = () => {
@@ -162,16 +164,16 @@ export const Grid = forwardRef((props, ref) => {
 
     return(
         <>
-            <button ref={ ref } onClick={() => runAlgorithm()} style={{display: "none"}}/>
-            <button onClick={() => constructMaze()} style={{margin: "10rem"}}>Maze</button>
-            <button onClick={() => clear()} style={{margin: "10rem"}}>Clear Grid</button>
+            <button ref={ algoRef } onClick={() => runAlgorithm()} style={{display: "none"}}/>
+            <button ref={ mazeRef }onClick={() => constructMaze()} style={{display: "none"}}>Maze</button>
             <div 
             className={styles.grid}
             onMouseUp = { onMouseUp }
             >
                 { display_grid }
             </div>
+            <button onClick={() => clear()} style={{margin: "10rem"}}>Clear Grid</button>
         </>
     )
 
-});
+};

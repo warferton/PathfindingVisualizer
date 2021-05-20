@@ -6,12 +6,11 @@ import { DFS } from '../../algorithms/search/dfs/dfs'
 import { consecutiveDFS } from '../../algorithms/search/dfs/consecutiveDfs'
 import { IDA } from '../../algorithms/search/IDA-Star/ida'
 import { SimpleMaze } from '../../algorithms/mazes/simple-pattern/simple-random-maze';
-import { Grid } from '../grid/grid.component'
 import styles from '../../styles/Nav.module.css'
 
 export const Nav = (props) => {
 
-const { setPlaceItem, setPathAlgorithm, runRef } = props;
+const { setPlaceItem, setPathAlgorithm, setMazeAlgorithm, algoRef, mazeRef } = props;
 
 const wall_ref = useRef();
 
@@ -49,7 +48,7 @@ return (
             <li className={ styles.navItem}>
                 <button 
                 className={ styles.navButton + " " + styles.button }
-                onClick={ () => runRef.current.click()}
+                onClick={ () => algoRef.current.click()}
                 >
                     <svg 
                     width="100" 
@@ -178,28 +177,34 @@ return (
                     <li>
                         <button 
                         className= { styles.button }
-                        onClick={ () => Grid.call(constructMaze(SimpleMaze), Grid, [])}>
+                        onClick={ () =>{ 
+                            setMazeAlgorithm({ algorithm: SimpleMaze, percentile: true });
+                            setTimeout(() => mazeRef.current.click(), 0);
+                            
+                            }}>
                             <p>Random Maze</p>
                         </button>
                     </li>
                     <li>
                         <button 
                         className= { styles.button }
-                        onClick={ () => console.log("Maze")}>
+                        onClick={ () => 
+                            setMazeAlgorithm({algorithm: ''})
+                        }>
                             <p>Recursive Division</p>
                         </button>
                     </li>
                     <li>
                         <button 
                         className= { styles.button }
-                        onClick={ () => console.log("Maze")}>
+                        onClick={ () => setMazeAlgorithm({algorithm: ''})}>
                             <p>Horizontal Lines</p>
                         </button>
                     </li>
                     <li>
                         <button 
                         className= { styles.button }
-                        onClick={ () => console.log("Maze")}>
+                        onClick={ () => setMazeAlgorithm({algorithm: ''})}>
                             <p>Vertical Lines</p>
                         </button>
                     </li>
