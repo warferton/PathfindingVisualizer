@@ -74,7 +74,7 @@ export const Grid = (props) => {
         if(percentile)
             setGrid(algorithm(grid, 25));
         else
-            setGrid(algorithm(grid, 25));
+            setGrid(algorithm(grid));
     }
 
     const clear = () => {

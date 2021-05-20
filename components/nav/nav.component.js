@@ -5,8 +5,9 @@ import { BFS } from '../../algorithms/search/bfs/bfs'
 import { DFS } from '../../algorithms/search/dfs/dfs'
 import { consecutiveDFS } from '../../algorithms/search/dfs/consecutiveDfs'
 import { IDA } from '../../algorithms/search/IDA-Star/ida'
-import { SimpleMaze } from '../../algorithms/mazes/simple-pattern/simple-random-maze';
-import styles from '../../styles/Nav.module.css'
+import { SimpleMaze } from '../../algorithms/mazes/simple-patterns/simple-random-maze';
+import { LineMaze } from '../../algorithms/mazes/simple-patterns/line-pattern-mazes';
+import styles from '../../styles/Nav.module.css';
 
 export const Nav = (props) => {
 
@@ -186,8 +187,7 @@ return (
                         className= { styles.button }
                         onClick={ () =>{ 
                             setMazeAlgorithm({ algorithm: SimpleMaze, percentile: true });
-                            setTimeout(() => mazeRef.current.click(), 0);
-                            
+                            setTimeout(() => mazeRef.current.click(), 10);
                             }}>
                             <p>Random Maze</p>
                         </button>
@@ -204,8 +204,12 @@ return (
                     <li>
                         <button 
                         className= { styles.button }
-                        onClick={ () => setMazeAlgorithm({algorithm: ''})}>
-                            <p>Horizontal Lines</p>
+                        onClick={ () => {
+                                    const algorithm = LineMaze(); 
+                                    setMazeAlgorithm({algorithm: algorithm, percentile: false});  
+                                    setTimeout(() => mazeRef.current.click(), 10); 
+                                }}>
+                            <p>Random Lines</p>
                         </button>
                     </li>
                     <li>
