@@ -11,7 +11,15 @@ const GOAL = { y:10, x: 10 };
 
 export const Grid = (props) => {
 
-    const { placeItem, pathAlgorithm, mazeAlgorithm, grid, setGrid, algoRef, mazeRef } = props; 
+    const { 
+        placeItem, 
+        pathAlgorithm, 
+        mazeAlgorithm, 
+        grid, 
+        setGrid, 
+        algoRef, 
+        mazeRef 
+    } = props; 
 
     let marked_nodes = [];
     
@@ -167,12 +175,12 @@ export const Grid = (props) => {
             <button ref={ algoRef } onClick={() => runAlgorithm()} style={{display: "none"}}/>
             <button ref={ mazeRef }onClick={() => constructMaze()} style={{display: "none"}}>Maze</button>
             <div 
-            className={styles.grid}
-            onMouseUp = { onMouseUp }
+                className={styles.grid}
+                onMouseUp = { onMouseUp }
             >
                 { display_grid }
             </div>
-            <button onClick={() => clear()} style={{margin: "10rem"}}>Clear Grid</button>
+            <button onClick={() => clear()} style={{marginLeft: "8rem", marginTop: '0.5rem'}}>Clear Grid</button>
         </>
     )
 
