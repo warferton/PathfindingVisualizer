@@ -18,7 +18,8 @@ export const Grid = (props) => {
         grid, 
         setGrid, 
         algoRef, 
-        mazeRef 
+        mazeRef,
+        cleanRef
     } = props; 
 
     let marked_nodes = [];
@@ -173,14 +174,14 @@ export const Grid = (props) => {
     return(
         <>
             <button ref={ algoRef } onClick={() => runAlgorithm()} style={{display: "none"}}/>
-            <button ref={ mazeRef }onClick={() => constructMaze()} style={{display: "none"}}>Maze</button>
+            <button ref={ mazeRef } onClick={() => constructMaze()} style={{display: "none"}}>Maze</button>
+            <button ref={ cleanRef } onClick={() => clear()} style={{display: "none"}}>Clear Grid</button>
             <div 
                 className={styles.grid}
                 onMouseUp = { onMouseUp }
             >
                 { display_grid }
             </div>
-            <button onClick={() => clear()} style={{marginLeft: "8rem", marginTop: '0.5rem'}}>Clear Grid</button>
         </>
     )
 

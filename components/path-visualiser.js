@@ -16,6 +16,8 @@ const PathVisualiser = () => {
 
     const mazeRunRef = useRef(null);
 
+    const cleanRef = useRef(null);
+
     return (
         <>
             <Nav 
@@ -24,6 +26,7 @@ const PathVisualiser = () => {
             setMazeAlgorithm={ setMazeAlgorithm } 
             algoRef={ algoRunRef }
             mazeRef={ mazeRunRef } 
+            cleanRef={ cleanRef }
             />
 
             <Grid 
@@ -32,7 +35,8 @@ const PathVisualiser = () => {
             pathAlgorithm={ pathAlgorithm } 
             mazeAlgorithm={ mazeAlgorithm } 
             algoRef={ algoRunRef } 
-            mazeRef={ mazeRunRef } 
+            mazeRef={ mazeRunRef }
+            cleanRef={ cleanRef }
             grid={ grid } 
             setGrid={ setGrid }
             />

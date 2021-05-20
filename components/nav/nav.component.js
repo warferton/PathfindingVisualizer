@@ -10,7 +10,14 @@ import styles from '../../styles/Nav.module.css'
 
 export const Nav = (props) => {
 
-const { setPlaceItem, setPathAlgorithm, setMazeAlgorithm, algoRef, mazeRef } = props;
+const { 
+    setPlaceItem, 
+    setPathAlgorithm, 
+    setMazeAlgorithm, 
+    algoRef, 
+    mazeRef, 
+    cleanRef
+ } = props;
 
 const wall_ref = useRef();
 
@@ -140,14 +147,14 @@ return (
                         <button 
                         className= { styles.button }
                         onClick={ () => alert("Sorry, this algorithm has not yet been implemented")}>
-                            <p>D-Star Lite</p>
+                            <p style={{textDecoration: 'line-through'}}>D-Star Lite</p>
                         </button>
                     </li>
                     <li>
                         <button 
                         className= { styles.button }
                         onClick={ () => alert("Sorry, this algorithm has not yet been implemented")}>
-                            <p>Catapult</p>
+                            <p style={{textDecoration: 'line-through'}}>Catapult</p>
                         </button>
                     </li>
                 </ul>
@@ -286,6 +293,14 @@ return (
             </li>
             
             <li className={ styles.navItem }>
+               
+            </li>
+                <button 
+                    className= { styles.navButton + " " + styles.button }
+                    onClick={ () => cleanRef.current.click()}>
+                    <span className={ styles.navItemText }> Clean Board </span>
+                </button>
+            <li className={ styles.navItem }>
                 <a href="https://warferton.github.io/" className={ styles.button + " " + styles.logo }>
                     <svg width="150" height="75" viewBox="0 0 269 260" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M155.466 4.06445L264 246L27.6364 4.06445" stroke="white" strokeWidth="10"/>
@@ -294,6 +309,8 @@ return (
                     </svg>
                 </a>
             </li>
+        
+
         </ul>
     </nav>
 )
