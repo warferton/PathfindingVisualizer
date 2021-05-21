@@ -69,12 +69,13 @@ export const Grid = (props) => {
     const constructMaze = () => {
         if(!!!mazeAlgorithm) return;
         clear();
-        console.log("MAZE");
+        clear();
+        setTimeout(() => {console.log("MAZE")
         const { algorithm, percentile } = mazeAlgorithm;
         if(percentile)
             setGrid(algorithm(grid, 25));
         else
-            setGrid(algorithm(grid));
+            setGrid(algorithm(grid))}, 10);
     }
 
     const clear = () => {
