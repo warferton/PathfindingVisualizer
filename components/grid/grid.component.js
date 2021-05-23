@@ -15,8 +15,8 @@ export const Grid = (props) => {
         placeItem, 
         pathAlgorithm, 
         mazeAlgorithm, 
-        grid, 
-        setGrid, 
+        // grid, 
+        // setGrid, 
         algoRef, 
         mazeRef,
         cleanRef
@@ -24,6 +24,8 @@ export const Grid = (props) => {
 
     let marked_nodes = [];
     
+    const [grid, setGrid] = useState([]);
+
     useEffect( () => {
         const max_rows = props.limit / 10;
         const grid = []
@@ -69,17 +71,16 @@ export const Grid = (props) => {
     const constructMaze = () => {
         if(!!!mazeAlgorithm) return;
         clear();
-        clear();
-        setTimeout(() => {console.log("MAZE")
         const { algorithm, percentile } = mazeAlgorithm;
-        if(percentile)
+        setTimeout(() => {if(percentile)
             setGrid(algorithm(grid, 25));
         else
-            setGrid(algorithm(grid))}, 10);
+            setGrid(algorithm(grid))}, 100)
     }
 
     const clear = () => {
-        for(const row of grid){
+        const temp_grid = grid.slice();
+        for(const row of temp_grid){
             for(const node of row){
                 node.wall = false;
                 node.weight = 1;
@@ -103,6 +104,7 @@ export const Grid = (props) => {
 
             }
         }
+        setGrid(temp_grid);
     }
 
     //============================================================================

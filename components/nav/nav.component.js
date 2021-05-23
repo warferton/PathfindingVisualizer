@@ -187,7 +187,7 @@ return (
                         className= { styles.button }
                         onClick={ () =>{ 
                             setMazeAlgorithm({ algorithm: SimpleMaze, percentile: true });
-                            setTimeout(() => mazeRef.current.click(), 10);
+                            setTimeout(() => mazeRef.current.click(), 100);
                             }}>
                             <p>Random Maze</p>
                         </button>
@@ -204,10 +204,9 @@ return (
                     <li>
                         <button 
                         className= { styles.button }
-                        onClick={ () => {
-                                    const algorithm = LineMaze(); 
-                                    setMazeAlgorithm({algorithm: algorithm, percentile: false});  
-                                    setTimeout(() => mazeRef.current.click(), 10); 
+                        onClick={ () => { 
+                                    setMazeAlgorithm({algorithm: LineMaze, percentile: false});  
+                                    setTimeout(() => mazeRef.current.click(), 100); 
                                 }}>
                             <p>Random Lines</p>
                         </button>

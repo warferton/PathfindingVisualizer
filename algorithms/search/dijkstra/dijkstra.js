@@ -26,7 +26,8 @@ export const Dijkstra = function(grid, start, goal){
         
         //mark as visited and add to visited list
         node.visited = true;
-        visited.push(node);
+        if(!node.wall)
+            visited.push(node);
         
         //goal found
         if(node === goal) return visited;
