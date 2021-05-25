@@ -274,6 +274,28 @@ return (
             </li>
 
             <li className={ styles.navItem }>
+                <button 
+                    className= { styles.navButton + " " + styles.button }
+                    onClick={ () => cleanRef.current.click()}>
+
+                    <svg 
+                    width="75" 
+                    height="75" 
+                    viewBox="0 0 85 80" 
+                    fill="none" 
+                    xmlns="http://www.w3.org/2000/svg">
+                        <path 
+                        d="M9.75 2H1.5V7M9.75 2V11.5M9.75 2L14.4291 6.75M67.5 60.625V69H57.5M67.5 60.625L64.5 57.5795L62 55.0417L60.1809 53.195M67.5 60.625L1.5 60M44 22L53.5 3L69 10L59.5 28.24M44 22L41 28L42.5 30.5L53.5 35L56.5 34L59.5 28.24M44 22L59.5 28.24M2 11.5H9.75M9.75 11.5V17M9.75 11.5H16.5M9.75 17H16.5M9.75 17V22M9.75 17H1.5M16.5 17V22M16.5 17H22M16.5 17V11.5M16.5 22H22M16.5 22H9.75M16.5 22V28M22 22V28M22 22V17M22 22H28M22 28H28M22 28H16.5M22 28V33.8027M1.5 44L1.51963 43.3717L1.67188 40M1.5 44V33.5M1.5 44V47.25M36 40H40.5H47M36 40V34H40.5L35.3619 28M36 40H32H28M36 40L36.25 43.9315V69M35.3619 28H32H28M35.3619 28L47 40M35.3619 28L32 24.238L30 22M28 28V33.8913M28 28V22M24.5261 17H22M24.5261 17L19.1082 11.5M24.5261 17L30 22M9.75 28H2L1.67188 40M9.75 28V22M9.75 28H16.5M9.75 28V33.6218M9.75 22H1.67188M16.5 28V33.6218M1.67188 22L1.5 17M1.67188 22L1.5 33.5M1.5 17V7M19.1082 11.5H16.5M19.1082 11.5L16.5 9M1.5 7L14.4291 6.75M14.4291 6.75L16.5 9M16.5 11.5V9M1.67188 40H9.75M1.5 33.5L9.75 33.6218M35.3619 34H32L28 33.8913M28 33.8913L22 33.8027M28 33.8913V40M22 33.8027L16.5 33.6218M22 33.8027L21.9375 40M16.5 33.6218H9.75M16.5 33.6218V40M9.75 33.6218V40M9.75 40H16.5M9.75 40V43.6132V69M16.5 40H21.9375M16.5 40V43.6132V56V69M21.9375 40H28M21.9375 40L22 43.7018L22.5 69M28 40V43.7985V69M51.431 44.3125L47 40M51.431 44.3125V69M51.431 44.3125L54.3246 47.25M45 40L45.7052 69M9.75 69H1.5V63V60M9.75 69H16.5M16.5 69H22.5M22.5 69H28M36.25 69H32H28M36.25 69H45.7052M51.431 69H45.7052M51.431 69H57.5M57.5261 50.5L57.5 57.5151V69M30 22H28M1.5 47.25V50.5V53.75M1.5 47.25H54.3246M54.3246 47.25L60.1809 53.195M1.5 53.75V57V60M1.5 53.75L60.1809 53.195" 
+                        stroke="#FFA600" 
+                        strokeWidth="3"/>
+                    </svg>
+
+
+                    <span className={ styles.navItemText }> Clean </span>
+                </button>
+            </li>
+
+            <li className={ styles.navItem }>
                 <button className= { styles.navButton + " " + styles.button }>
                     <svg 
                     aria-hidden="true" 
@@ -295,14 +317,7 @@ return (
                 </button>
             </li>
             
-            <li className={ styles.navItem }>
-               
-            </li>
-                <button 
-                    className= { styles.navButton + " " + styles.button }
-                    onClick={ () => cleanRef.current.click()}>
-                    <span className={ styles.navItemText }> Clean Board </span>
-                </button>
+
             <li className={ styles.navItem }>
                 <a href="https://warferton.github.io/" className={ styles.button + " " + styles.logo }>
                     <svg width="150" height="75" viewBox="0 0 269 260" fill="none" xmlns="http://www.w3.org/2000/svg">
