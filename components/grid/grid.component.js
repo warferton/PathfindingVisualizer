@@ -6,24 +6,21 @@ import styles from '../../styles/Grid.module.css';
 import NodeStyles from '../../styles/Node.module.css';
 
 
-const START = { y:20, x: 35 };
-const GOAL = { y:10, x: 10 };
-
 export const Grid = (props) => {
 
     const { 
         placeItem, 
         pathAlgorithm, 
         mazeAlgorithm, 
-        // grid, 
-        // setGrid, 
         algoRef, 
         mazeRef,
         cleanRef
     } = props; 
 
-    let marked_nodes = [];
-    
+    const [START, setSTART] = useState({ y:20, x: 35 });
+    const [GOAL, setGOAL] = useState({ y:10, x: 10 });
+    const [SPECIAL_NODE_DRAG, setSPECIAL_NODE_DRAG] = useState(null);
+
     const [grid, setGrid] = useState([]);
 
     useEffect( () => {
@@ -47,30 +44,62 @@ export const Grid = (props) => {
 
     const onMouseDown = (x, y) => {
         setMouseDown(true);
-        paint(x, y, grid);
-    }
+        let special_node_role;
+        if(x === START.x && y === START.y)
+            special_node_role = 'START';
+        if(x === GOAL.x && y === GOAL.y )
+            special_node_role = 'GOAL';
+        if(SPECIAL_NODE_DRAG === null){
+            setSPECIAL_NODE_DRAG(special_node_role);
+            console.log((`onMouseDown: SPECIAL_NODE_DRAG = ${SPECIAL_NODE_DRAG}`));
+            return;
+        }
+        else
+            paint(x, y, grid);
+        }
 
     const onMouseUp = () => {
         setMouseDown(false);
+        setSPECIAL_NODE_DRAG(null);
+        console.log((`onMouseUp: SPECIAL_NODE_DRAG = ${SPECIAL_NODE_DRAG}`));
     }
 
     const onMouseEnter = (x, y) => {
         if(mouseDown) {
-            paint(x, y, grid);
+            console.log((`onMouseENTER: SPECIAL_NODE_DRAG = ${SPECIAL_NODE_DRAG}`));
+            if(SPECIAL_NODE_DRAG !== null){
+                if(SPECIAL_NODE_DRAG === 'START'){
+                    START.ref.current.className = NodeStyles.node;
+                    setSTART({y: y, x: x});
+                    START.ref.current.className += ' ' + NodeStyles.startNode;
+                }
+                if(SPECIAL_NODE_DRAG === 'GOAL'){
+                    GOAL.ref.current.className = NodeStyles.node;
+                    setGOAL({y: y, x: x});
+                    GOAL.ref.current.className += ' ' + NodeStyles.goalNode;
+                }
+                console.log("Set Special Node");
+            }
+            else
+                paint(x, y, grid);
         }
     }
 
     const runAlgorithm = () => {
         if(!!!pathAlgorithm) return;
+        clearPaths();
         const algorithm = pathAlgorithm.algorithm;
         const start_node = grid[START.y][START.x];
         const end_node = grid[GOAL.y][GOAL.x];
-        marked_nodes = animate(pathAlgorithm.algorithm(grid, start_node, end_node));
+        return setTimeout(() => {
+            const result = animate(pathAlgorithm.algorithm(grid, start_node, end_node));
+            return result;
+        }, 10);
     }
 
     const constructMaze = () => {
         if(!!!mazeAlgorithm) return;
-        clear();
+        clearAll();
         const { algorithm, percentile } = mazeAlgorithm;
         setTimeout(() => {if(percentile)
             setGrid(algorithm(grid, 25));
@@ -78,12 +107,39 @@ export const Grid = (props) => {
             setGrid(algorithm(grid))}, 100)
     }
 
-    const clear = () => {
+    const clearAll = () => {
         const temp_grid = grid.slice();
         for(const row of temp_grid){
             for(const node of row){
                 node.wall = false;
                 node.weight = 1;
+                node.parent = null;
+                node.visited = false;
+
+                if(node.role === ''){
+                    node.ref.current.className = NodeStyles.node;
+                    continue;
+                }
+
+                if(node.role === 'START'){
+                    node.ref.current.className = `${NodeStyles.node} ${NodeStyles.startNode}`;
+                    continue;
+                }
+
+                if(node.role === 'GOAL'){
+                node.ref.current.className = `${NodeStyles.node} ${NodeStyles.goalNode}`;
+                    continue;
+                }
+
+            }
+        }
+        setGrid(temp_grid);
+    }
+
+    const clearPaths = () => {
+        const temp_grid = grid.slice();
+        for(const row of temp_grid){
+            for(const node of row){
                 node.parent = null;
                 node.visited = false;
 
@@ -178,7 +234,7 @@ export const Grid = (props) => {
         <>
             <button ref={ algoRef } onClick={() => runAlgorithm()} style={{display: "none"}}/>
             <button ref={ mazeRef } onClick={() => constructMaze()} style={{display: "none"}}>Maze</button>
-            <button ref={ cleanRef } onClick={() => clear()} style={{display: "none"}}>Clear Grid</button>
+            <button ref={ cleanRef } onClick={() => clearAll()} style={{display: "none"}}>Clear Grid</button>
             <div 
                 className={styles.grid}
                 onMouseUp = { onMouseUp }
