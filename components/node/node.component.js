@@ -13,7 +13,8 @@ const Node = forwardRef( (props, ref) => {
         visited,
         wall,
         mouseDown,
-        mouseEnter 
+        mouseEnter,
+        mouseLeave
     } = props
 
 
@@ -56,6 +57,7 @@ const Node = forwardRef( (props, ref) => {
         ref = { ref }
         onMouseDown = { () => mouseDown(x, y) }
         onMouseEnter = { () => mouseEnter(x, y) }
+        onMouseLeave = { () => mouseLeave(x, y) }
         >
             {
                 weight > 1 && weight_icon

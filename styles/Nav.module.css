@@ -71,7 +71,8 @@
   margin-top: 0;
 }
 
-.optionList {
+.algoOptionList,
+.mazeOptionList {
   padding: 0.5rem;
   background-color: rgb(56, 56, 56);
   border: 1.3px solid #ffa600;
@@ -87,11 +88,17 @@
   animation-delay: 0s;
 }
 
-.optionList button {
+.mazeOptionList {
+  top: 10rem;
+}
+
+.algoOptionList,
+.mazeOptionList button {
   cursor: pointer;
 }
 
-.optionList p {
+.algoOptionList p,
+.mazeOptionList p {
   font-size: 18px;
   font-weight: 300;
   color: #ffa600;
@@ -101,7 +108,8 @@
   cursor: pointer;
 }
 
-.navItem:hover > .optionList {
+.navItem:hover > .algoOptionList,
+.navItem:hover > .mazeOptionList {
   display: block;
 }
 

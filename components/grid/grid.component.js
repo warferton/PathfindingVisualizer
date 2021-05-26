@@ -44,45 +44,54 @@ export const Grid = (props) => {
 
     const onMouseDown = (x, y) => {
         setMouseDown(true);
-        let special_node_role;
-        if(x === START.x && y === START.y)
-            special_node_role = 'START';
-        if(x === GOAL.x && y === GOAL.y )
-            special_node_role = 'GOAL';
-        if(SPECIAL_NODE_DRAG === null){
-            setSPECIAL_NODE_DRAG(special_node_role);
-            console.log((`onMouseDown: SPECIAL_NODE_DRAG = ${SPECIAL_NODE_DRAG}`));
-            return;
+        const temp_grid = grid.slice();
+        const node = temp_grid[y][x];
+        if(node.x === START.x && node.y === START.y 
+            || node.x === GOAL.x && node.y === GOAL.y) {
+            if(SPECIAL_NODE_DRAG === null){
+                setSPECIAL_NODE_DRAG(node.role);
+                return;
+            }
         }
         else
             paint(x, y, grid);
         }
 
-    const onMouseUp = () => {
+    const onMouseUp = (x, y) => {
+        const temp_grid = grid.slice();
+        
         setMouseDown(false);
         setSPECIAL_NODE_DRAG(null);
-        console.log((`onMouseUp: SPECIAL_NODE_DRAG = ${SPECIAL_NODE_DRAG}`));
+        console.log(SPECIAL_NODE_DRAG);
     }
 
     const onMouseEnter = (x, y) => {
-        if(mouseDown) {
-            console.log((`onMouseENTER: SPECIAL_NODE_DRAG = ${SPECIAL_NODE_DRAG}`));
+        if(!mouseDown) return;
+            console.log(SPECIAL_NODE_DRAG);
             if(SPECIAL_NODE_DRAG !== null){
+                const temp_grid = grid.slice();
+                const node = temp_grid[y][x];
                 if(SPECIAL_NODE_DRAG === 'START'){
-                    START.ref.current.className = NodeStyles.node;
-                    setSTART({y: y, x: x});
-                    START.ref.current.className += ' ' + NodeStyles.startNode;
+                    node.role = 'START';
+                    setSTART(node);
                 }
                 if(SPECIAL_NODE_DRAG === 'GOAL'){
-                    GOAL.ref.current.className = NodeStyles.node;
-                    setGOAL({y: y, x: x});
-                    GOAL.ref.current.className += ' ' + NodeStyles.goalNode;
+                    node.role = 'GOAL';
+                    setGOAL(node);
                 }
-                console.log("Set Special Node");
+                return;
             }
             else
                 paint(x, y, grid);
-        }
+    }
+
+    const onMouseLeave = (x, y) => {
+        if(!mouseDown) return;
+        if(SPECIAL_NODE_DRAG === null) return;
+        const temp_grid = grid.slice();
+        const node = temp_grid[y][x];
+        node.role = '';
+        console.log('left');
     }
 
     const runAlgorithm = () => {
@@ -142,19 +151,18 @@ export const Grid = (props) => {
             for(const node of row){
                 node.parent = null;
                 node.visited = false;
+                if(node.wall){
+                    node.ref.current.className = `${NodeStyles.node} ${NodeStyles.wallNode}`;
+                    continue;
+                }
 
-                if(node.role === ''){
+                if(node.weight > 1){
+                    node.ref.current.className = `${NodeStyles.node} ${NodeStyles.weightNode}`;
+                    continue;
+                }
+
+                if(node.role === '' ){
                     node.ref.current.className = NodeStyles.node;
-                    continue;
-                }
-
-                if(node.role === 'START'){
-                    node.ref.current.className = `${NodeStyles.node} ${NodeStyles.startNode}`;
-                    continue;
-                }
-
-                if(node.role === 'GOAL'){
-                node.ref.current.className = `${NodeStyles.node} ${NodeStyles.goalNode}`;
                     continue;
                 }
 
@@ -191,6 +199,7 @@ export const Grid = (props) => {
                             weight={ weight }
                             mouseDown={ onMouseDown }
                             mouseEnter={ onMouseEnter }
+                            mouseLeave={ onMouseLeave }
                         />
                     )
                 }

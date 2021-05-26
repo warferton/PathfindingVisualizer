@@ -44,6 +44,7 @@ const HorizontalLineMaze = (grid) => {
     return temp_grid;
 }
 
+// TODO
 const DiagonalLineMaze = (grid) => {
      const temp_grid = grid.slice();
     for(const row of temp_grid){

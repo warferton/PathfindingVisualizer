@@ -136,19 +136,17 @@ export const animate = (node_list) => {
  * @return node
  */
 export const createNode = (x, y, ref, START, GOAL) => {
-    const node_role = 
-            y === START.y && x === START.x? "START" 
-            : 
-            y === GOAL.y && x === GOAL.x ? "GOAL" 
-            : '';
+    let node_role = '';
 
-    const node_is_wall = false;
+    if(x === START.x && y === START.y) node_role = 'START';
+
+    if(x === GOAL.x && y === GOAL.y) node_role = 'GOAL';
 
     const node = {
             ref: ref,
             key: `${ x }-${ y }` ,
             role:  node_role,
-            wall: node_is_wall,
+            wall: false,
             x: x,
             y: y,
             distance: Infinity,

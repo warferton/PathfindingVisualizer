@@ -101,7 +101,7 @@ return (
                     <span className={ styles.navItemText } > Algorithms </span>
                 </button>
                 
-                <ul className={ styles.navList + " " + styles.optionList }>
+                <ul className={ styles.navList + " " + styles.algoOptionList }>
                     <li>
                         <button 
                         className= { styles.button }
@@ -181,7 +181,7 @@ return (
                     <span className={ styles.navItemText }> Mazes </span>
                 </button>
 
-                <ul className={ styles.navList + " " + styles.optionList }>
+                <ul className={ styles.navList + " " + styles.mazeOptionList }>
                     <li>
                         <button 
                         className= { styles.button }
@@ -190,15 +190,6 @@ return (
                             setTimeout(() => mazeRef.current.click(), 100);
                             }}>
                             <p>Random Maze</p>
-                        </button>
-                    </li>
-                    <li>
-                        <button 
-                        className= { styles.button }
-                        onClick={ () => 
-                            setMazeAlgorithm({algorithm: ''})
-                        }>
-                            <p>Recursive Division</p>
                         </button>
                     </li>
                     <li>
@@ -214,8 +205,10 @@ return (
                     <li>
                         <button 
                         className= { styles.button }
-                        onClick={ () => setMazeAlgorithm({algorithm: ''})}>
-                            <p>Vertical Lines</p>
+                        onClick={ () => 
+                            alert('Sorry, this algorithm has not yet been implemented')
+                        }>
+                            <p style={{textDecoration: 'line-through'}}>Recursive Division</p>
                         </button>
                     </li>
                 </ul>
