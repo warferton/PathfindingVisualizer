@@ -27,8 +27,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
     - run: npm run build
-    - run: npm run export
-    
+
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@4.1.3
       with:
