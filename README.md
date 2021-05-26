@@ -2,6 +2,8 @@
 
 Welcome to Pathfinding Visualizer! This is a small app I built after having a spike of facination and curiosity towards pathfinding algorithms, caused by prticipating in a codebattle event. I wanted to visualize the different one's I've researched as well as try to engineer one myself.
 
+[Try the App](https://warferton.github.io/PathfindingVisualizer/)
+
 ## Behold the Algorithms
 
 List of algrotihms to be implemented in this application( ✅ - implemented | ⚠️ - in process | ❌ - not implemented)
