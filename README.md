@@ -19,6 +19,31 @@ List of algrotihms to be implemented in this application( ✅ - implemented | �
 
 ## A Brief Explanation of the Algorithms Used
 
+### Dijkstra's Pathfinding Algorithm
+The father of all the shortest path pathfinding algorithms, it utilizes the mechanics of path cost to determine the shortest path to the goal. Was conceived by Edsger W. Dijkstra in 1956. The algorithm exists in many variants, the one I implemented is Dijkstra's original algorithm to find the shortest path between two given nodes. It always provides the shortest path, but has to do lots of iterating through the neighbouring nodes until the goal-node is found. 
+
+### A* Pathfinding Algorithm
+Is an extension of the Dijkstra's algorithm, that utilizes heuristics and approximate distance calculations to determine the shortest path to the goal. First published by Peter Hart, Nils Nilsson and Bertram Raphael of Stanford Research Institute in 1968. It always provides the shortest path and the number of nodes that are visited is signifficantly less then in Dijkstra's.
+
+### Breadth-First Search (BFS) Algorithm
+A standard algorithm for tree and graph traversals. The algorithm iterates through all the neighbours of the start node by level untill the goal is reached. The shortest path to the goal is not guarenteed.
+
+### Depth-First Search (DFS) Algorithm
+Another standard algorithm for tree and graph traversals. The algorithm starts at the root node and explores as far as possible along each branch before backtracking.
+A version of depth-first search was investigated in the 19th century by French mathematician Charles Pierre Trémaux.
+
+### Consecutive DFS
+Same DFS Algorithm but it shows the worst case scenario when a graph structure resembles a linked list.
+
+### Iterative-Deepening A* (IDA*) Algorithm
+It is a variant of iterative deepening depth-first search that borrows the idea to use a heuristic function to evaluate the remaining cost to get to the goal from the A* search algorithm. Since it is a depth-first search algorithm, its memory usage is lower than in A*, but unlike ordinary iterative deepening search, it concentrates on exploring the most promising nodes and thus does not go to the same depth everywhere in the search tree.
+
+### D* Lite
+D* Lite implements the same behavior as D* or Focused D*, but based on Lifelong Planning A*, which was introduced by Koenig and Likhachev few years earlier. It is simpler to understand and can be implemented. Performance-wise, it is as good as or better than Focused D*. The algorithm can adapt to changing environment and correct its path accordingly.
+
+### Catapult
+The algorithm I concepted and am still working on.
+
 ---
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
