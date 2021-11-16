@@ -15,6 +15,7 @@ const {
     setPlaceItem, 
     setPathAlgorithm, 
     setMazeAlgorithm, 
+    setShowModal,
     algoRef, 
     mazeRef, 
     cleanRef
@@ -289,7 +290,10 @@ return (
             </li>
 
             <li className={ styles.navItem }>
-                <button className= { styles.navButton + " " + styles.button }>
+                <button 
+                    className= { styles.navButton + " " + styles.button }
+                    onClick={ () => setShowModal(true)}
+                >
                     <svg 
                     aria-hidden="true" 
                     focusable="false" 

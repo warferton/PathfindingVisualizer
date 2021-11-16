@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import { Grid } from './grid/grid.component'
 import { Nav } from './nav/nav.component';
+import { InfoModal as Modal } from './modal/modal.component';
 
 const PathVisualiser = () => {
 
@@ -18,19 +19,32 @@ const PathVisualiser = () => {
 
     const cleanRef = useRef(null);
 
+    const modalRef = useRef(null);
+
+    const [showModal, setShowModal] = useState(true);
+
     return (
         <>
+            <div ref={ modalRef }>
+                <Modal
+                ref={ modalRef }
+                onClose={() => setShowModal(false)}
+                active={ showModal }
+                />
+            </div>
+
             <Nav 
-            setPlaceItem={setPlaceItem} 
+            setPlaceItem={ setPlaceItem } 
             setPathAlgorithm={ setPathAlgorithm } 
             setMazeAlgorithm={ setMazeAlgorithm } 
+            setShowModal = { setShowModal }
             algoRef={ algoRunRef }
             mazeRef={ mazeRunRef } 
             cleanRef={ cleanRef }
             />
 
             <Grid 
-            limit ={300} 
+            limit={ 300 } 
             placeItem={ placeItem } 
             pathAlgorithm={ pathAlgorithm } 
             mazeAlgorithm={ mazeAlgorithm } 
